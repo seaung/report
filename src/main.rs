@@ -1,5 +1,8 @@
 use actix_web::{App, HttpServer};
 
+#[macro_use]
+mod macros;
+
 mod models;
 mod config;
 mod controllers;
