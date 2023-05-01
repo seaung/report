@@ -1,6 +1,17 @@
 use clap::{Arg, Command};
 use ansi_term::Colour::{Blue, Green, Red, Yellow};
 
+enum db_enum {
+    MYSQL;
+    MSSQL;
+    POSTGRESQL;
+    REDIS;
+    MEMCACHED;
+    ELASTICSEACH;
+    ORACLE;
+    MONGODB;
+};
+
 pub struct Logger;
 
 impl Logger {
@@ -31,22 +42,28 @@ impl Options {
                 .subcommand_required(true)
                 .arg_required_else_help(true)
                 .subcommand(
-                    Command::new("mysql")
-                        .about("report mysql")
+                    Command::new("violence")
+                        .about("暴力破解数据库!")
+                        .arg(
+                            Arg::new("type")
+                            .short('T')
+                            .long("Type")
+                            .help("爆破数据库的类型"))
                         .arg(
                             Arg::new("file")
-                            .short('f')
-                            .long("file")
-                            .help("report mysql file."))
+                            .short('F')
+                            .long("File")
+                            .help("爆破数据库字典文件")
+                        )
                 )
                 .subcommand(
-                    Command::new("mssql")
-                        .about("report mssql")
+                    Command::new("unauthorized")
+                        .about("数据库未认证爆破")
                         .arg(
-                            Arg::new("file")
-                            .short('f')
-                            .long("file")
-                            .help("report mssql")
+                            Arg::new("type")
+                            .short('T')
+                            .long("type")
+                            .help("数据库未认证漏洞爆破")
                         )
                 )
                 .get_matches();
