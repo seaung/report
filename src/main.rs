@@ -1,7 +1,8 @@
 mod options;
-mod report;
-mod db;
+mod utils;
+mod helper;
 
 fn main(){
-    options::Options::parse();
+    utils::Banner::show();
+    options::Options::run();
 }
